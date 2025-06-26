@@ -6,6 +6,7 @@ using api.Dtos.Comment;
 using api.Interfaces;
 using api.Mappers;
 using api.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
@@ -69,5 +70,14 @@ namespace api.Controllers
             return Ok(comment.ToCommentDto());
         }
 
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<IActionResult> Delete([FromRoute] int id)
+        {
+            var commentModel = await _commentRepo.DeleteAsync(id);
+            if (commentModel == null)
+                return NotFound("Comment does not exist");
+            return Ok(commentModel);
+        }
     }
 }
