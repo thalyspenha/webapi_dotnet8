@@ -46,7 +46,7 @@ namespace api.Repository
 
             if (!string.IsNullOrWhiteSpace(query.CompanyName))
             {
-                stocks = stocks.Where(s => s.Company.Contains(query.CompanyName));
+                stocks = stocks.Where(s => s.CompanyName.Contains(query.CompanyName));
             }
 
             if (!string.IsNullOrWhiteSpace(query.Symbol))
@@ -87,7 +87,7 @@ namespace api.Repository
             }
 
             existStock.Symbol = stockDto.Symbol;
-            existStock.Company = stockDto.Company;
+            existStock.CompanyName = stockDto.Company;
             existStock.Industry = stockDto.Industry;
             existStock.Purchase = stockDto.Purchase;
             existStock.LastDiv = stockDto.LastDiv;
